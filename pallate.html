@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <link href="bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="jquery-ui.min.css" rel="stylesheet" type="text/css" />
+    <link href="jquery-ui.theme.min.css" rel="stylesheet" type="text/css" />
+    <script src="jquery-1.12.4.min.js"></script>
+    <script src="jquery-ui.min.js"></script>
+	<script src="bootstrap.min.js"></script>
+   
+
+
+    <script>
+	
+	
+
+	
+
+function componentToHex(val) {
+    
+	var hex = val.toString(16);
+    return hex.length == 1 ? "0" + hex : hex;
+	
+}
+
+
+function rgbToHex(red, green, blue) {
+   
+   return "#" + componentToHex(red) + componentToHex(green) + componentToHex(blue);
+   
+}		
+		
+	
+	
+    $(document).ready(function(){
+			var red = 79;
+			var green = 48;
+			var blue = 79;
+			var opacity = 1;
+	
+	
+	var hexValue =  rgbToHex(red,green,blue);
+	var rgba = red+","+green+","+blue+","+opacity;
+	$("#colorpallate").css("background-color","rgba("+rgba +")");
+	$("#hex-result").text(hexValue);
+	$("#rgba-result").text("rgba("+red+","+green+","+blue+","+opacity+")");
+	
+	
+	
+	var slides = $("#sliderRed,#sliderGreen,#sliderBlue,#sliderTransparent");
+	var rgbSlides = $("#sliderRed,#sliderGreen,#sliderBlue");
+	
+		$("#sliderRed").slider({value:79});
+		$("#sliderGreen").slider({value:48});
+		$("#sliderBlue").slider({value:79});
+		$("#sliderTransparent").slider({value:100});
+		
+		slides.slider();
+		rgbSlides.slider("option","max", 255);
+		
+		
+		
+		
+		$("#sliderTransparent").slider("option","max",100);
+		
+		
+		
+		slides.on("slide", function(event, ui){
+			
+			
+			
+			
+			if($(this).is("#sliderRed")){
+				
+				red = ui.value;
+			
+			}
+			else if($(this).is("#sliderGreen")){
+				
+				green = ui.value;
+			
+			}
+			else if($(this).is("#sliderBlue")){
+				
+				blue = ui.value;
+			
+			}
+			else if($(this).is("#sliderTransparent")){
+				
+				opacity =( (ui.value/100));
+			
+			}
+		
+		
+				hexValue =  rgbToHex(red,green,blue);
+				rgba = red+","+green+","+blue+","+opacity;
+				$("#colorpallate").css("background-color","rgba("+rgba +")");
+				$("#hex-result").text(hexValue);
+				$("#rgba-result").text("rgba("+rgba +")");
+				
+		
+		
+		});
+ });
+		
+		
+	
+
+
+	
+		
+
+
+
+
+    </script>
+
+
+    <style>
+        @import 'https://fonts.googleapis.com/css?family=Bungee+Shade';
+        .slide {
+            margin-bottom: 20px;
+        }
+        .dimensions {
+            height: 10px;
+            border-radius: 10%;
+            
+        }
+        .red {
+            background-color: #D7373F;
+        }
+        .green {
+            background-color: green;
+        }
+        .blue {
+            background-color: blue;
+        }
+        .transparent {
+            background-color: white;
+        }
+        .heading {
+            font-family: 'Bungee Shade', cursive;
+        }
+        #colorpallate {
+            height: 50px;
+        }
+		
+		.add-padding{
+		
+		
+		}
+		
+    </style>
+
+
+
+</head>
+
+
+<body>
+
+    <div class="container">
+
+
+
+        <div class="panel panel-default">
+
+            <h1 class="text-center heading">Color Pallate</h1>
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+    <div class="container">
+        <div class="well">
+
+            <div class="panel panel-default">
+                <div class="panel-body" id="colorpallate">
+
+                </div>
+            </div>
+            <div class="row slide">
+
+
+                <div class="col-xs-1">
+                    <div class="dimensions red"></div>
+                </div>
+
+                <div class="col-xs-11">
+                    <div id="sliderRed"></div>
+                </div>
+            </div>
+
+
+            <div class="row slide">
+
+
+                <div class="col-xs-1">
+                    <div class=" dimensions green"></div>
+                </div>
+
+                <div class="col-xs-11">
+                    <div id="sliderGreen"></div>
+                </div>
+            </div>
+
+
+
+            <div class="row slide">
+
+
+                <div class="col-xs-1">
+                    <div class="dimensions blue"></div>
+                </div>
+
+                <div class="col-xs-11">
+                    <div id="sliderBlue" ></div>
+                </div>
+            </div>
+
+
+            <div class="row slide">
+
+
+                <div class="col-xs-1">
+                    <div class="dimensions transparent"></div>
+                </div>
+
+                <div class="col-xs-11">
+                    <div id="sliderTransparent"></div>
+                </div>
+            </div>
+
+
+              <div class="row add-padding">
+
+
+                   
+                    <div class="col-xs-4 well">
+                        <div class="text-center"><span class="badge text-center">HEX</span></div>
+                        <div id="hex-result" class="text-center"></div>
+                    </div>
+
+                    <div class="col-xs-4 well">
+                        <div class="text-center"><span class="badge">RGBA</span></div>
+                        <div id="rgba-result" class="text-center"></div>
+                    </div>
+
+                    <div class="col-xs-4 well">
+                        <div class="text-center"><span class="badge">HSLA</span></div>
+                        <div id="hlc-result" class="text-center text-responsive">hello</div>
+                    </div>
+
+
+
+                </div>
+
+
+        </div>
+
+    </div>
+
+</body>
+
+
+</html>
